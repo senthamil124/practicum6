@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LegalHive - Positioning Elements</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#fdeef4;padding:20px}
+
+  input[type="radio"]{display:none}
+
+  header{
+    background:#0f3d33;color:white;
+    text-align:center;padding:20px;
+    border-radius:8px;
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
+  header h1{font-size:28px}
+  header p{font-size:14px}
+
+  h2{text-align:center;margin:20px 0;color:#222}
+
+  .stage{
+    background:#1e5a4a;
+    max-width:750px;height:360px;
+    margin:0 auto;border-radius:10px;
+    position:relative;
+    overflow:hidden;
+  }
+  .stage::before{
+    content:"";position:absolute;
+    top:0;bottom:0;left:50%;
+    border-left:1px dashed rgba(255,255,255,0.4);
+  }
+  .stage::after{
+    content:"";position:absolute;
+    left:0;right:0;top:50%;
+    border-top:1px dashed rgba(255,255,255,0.4);
+  }
+
+  .corner{
+    position:absolute;
+    background:rgba(255,255,255,0.15);
+    color:white;font-weight:bold;
+    padding:10px 14px;border-radius:6px;
+    z-index:2;
+  }
+  .top-left{top:15px;left:15px}
+  .top-right{top:15px;right:15px}
+  .bottom-left{bottom:15px;left:15px}
+  .bottom-right{bottom:15px;right:15px}
+
+  .center-box{
+    position:absolute;
+    top:50%;left:50%;transform:translate(-50%,-50%);
+    background:#fff5f8;color:#222;
+    text-align:center;padding:20px 25px;
+    border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    z-index:10;
+    transition:all 0.4s ease;
+  }
+  .center-box h3{font-size:22px}
+  .center-box p{font-size:13px;margin-top:5px}
+
+  /* FIX: body:has() - Radio enga irunthalum work aagum */
+  body:has(#pos-tl:checked) .center-box{top:15px;left:15px;bottom:auto;right:auto;transform:none}
+  body:has(#pos-tr:checked) .center-box{top:15px;right:15px;bottom:auto;left:auto;transform:none}
+  body:has(#pos-bl:checked) .center-box{bottom:15px;left:15px;top:auto;right:auto;transform:none}
+  body:has(#pos-br:checked) .center-box{bottom:15px;right:15px;top:auto;left:auto;transform:none}
+  body:has(#pos-center:checked) .center-box{top:50%;left:50%;bottom:auto;right:auto;transform:translate(-50%,-50%)}
+
+  .try{text-align:center;margin:20px 0}
+  .try label{
+    display:inline-block;
+    background:#122e26;color:white;
+    padding:10px 16px;margin:5px;border-radius:6px;
+    cursor:pointer;font-weight:bold;
+  }
+  .try label:hover{background:#1e5a4a}
+
+  .msg{text-align:center;margin:10px 0;font-weight:bold;display:none}
+  body:has(#pos-tl:checked) .msg-tl{display:block}
+  body:has(#pos-tr:checked) .msg-tr{display:block}
+  body:has(#pos-bl:checked) .msg-bl{display:block}
+  body:has(#pos-br:checked) .msg-br{display:block}
+  body:has(#pos-center:checked) .msg-center{display:block}
+
+  .concepts{
+    background:#fff5f8;max-width:750px;margin:20px auto;
+    padding:25px;border-radius:10px;border-left:4px solid #0f3d33;
+  }
+  .concepts h3{margin-bottom:15px}
+  .concepts p{margin:10px 0;line-height:1.6}
+
+  @media(max-width:600px){
+    .stage{height:300px}
+    .center-box h3{font-size:18px}
+    .corner{font-size:12px;padding:7px 10px}
+  }
+</style>
+</head>
+<body>
+
+<input type="radio" name="pos" id="pos-tl">
+<input type="radio" name="pos" id="pos-tr">
+<input type="radio" name="pos" id="pos-bl">
+<input type="radio" name="pos" id="pos-br">
+<input type="radio" name="pos" id="pos-center" checked>
+
+<header>
+  <h1>LegalHive</h1>
+  <p>Smart Legal Management Platform</p>
+</header>
+
+<h2>Positioning Elements</h2>
+
+<div class="stage">
+  <div class="corner top-left">Top Left</div>
+  <div class="corner top-right">Top Right</div>
+  <div class="corner bottom-left">Bottom Left</div>
+  <div class="corner bottom-right">Bottom Right</div>
+  <div class="center-box">
+    <h3>LegalHive</h3>
+    <p>Justice • Trust • Growth</p>
+  </div>
+</div>
+
+<div class="try">
+  <h3>Try It Yourself</h3><br>
+  <label for="pos-tl">Top Left</label>
+  <label for="pos-tr">Top Right</label>
+  <label for="pos-bl">Bottom Left</label>
+  <label for="pos-br">Bottom Right</label>
+  <label for="pos-center">Centered</label>
+</div>
+
+<p class="msg msg-tl">LegalHive title moved to Top Left position successfully.</p>
+<p class="msg msg-tr">LegalHive title moved to Top Right position successfully.</p>
+<p class="msg msg-bl">LegalHive title moved to Bottom Left position successfully.</p>
+<p class="msg msg-br">LegalHive title moved to Bottom Right position successfully.</p>
+<p class="msg msg-center">LegalHive title moved to center position successfully.</p>
+
+<div class="concepts">
+  <h3>Positioning Concepts</h3>
+  <p><b>1. Position Types:</b> The position property controls how elements are placed on a webpage.</p>
+  <p><b>2. Position Values:</b> Top, bottom, left and right control the element's location.</p>
+  <p><b>3. Z-Index:</b> Controls the stacking order of overlapping elements.</p>
+  <p><b>4. Responsive Quadrant Layout:</b> Divides the business display into four sections and adjusts to different screen sizes.</p>
+</div>
+
+</body>
+</html>
